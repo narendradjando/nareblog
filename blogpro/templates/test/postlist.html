@@ -1,0 +1,27 @@
+<!DOCTYPE html
+{%extends "test/base.html"%}
+{%block title%}blog home page{%endblock%}
+{%block content%}
+  <h1 class='head'>NARENDRAS BLOG</h1>
+  {%if t %}
+  <h2>Posts related {{tag.name}}</h2>
+  {%endif%}
+
+
+
+    {%for post in postlist%}
+
+     <h2><a href='{{post.get_absolute_url}}'>{{post.title}}</a></h2>
+     <p>published on {{post.publish}}, published by <div class="author">{{post.author|title}}</div></p>
+
+        <p>Tags : {%for tag in post.tags.all%}
+            <a href="{%url 'postlist by tagname' tag.slug%}" , class='btn btn-primary'>{{tag.name}}</a>
+          {%endfor%}       </p>
+
+            {{post.body|truncatewords:30}}<br><hr class='line'><br>
+
+          {%endfor%}
+
+    {%include 'test/pagenation.html' with page=postlist%}
+    <br><br><br><br>
+{%endblock%}

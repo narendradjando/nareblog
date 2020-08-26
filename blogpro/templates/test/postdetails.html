@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{%extends 'test/base.html'%}
+{%block title%}{{post.title}} details{%endblock%}
+{%block content%}
+<h1>{{post.title}}</h1>
+<p>published on {{post.publish}}, published by {{post.author|title}}</p><hr><br>
+{{post.body}}
+<br><br>
+<a href="/{{post.id}}/share" class='btn btn-primary'>share</a><br><br><br>
+{%with comments.count as comment_count%}
+<h2>{{comment_count}} Comment{{comment_count|pluralize}}</h2>
+{%endwith%}
+ {%if comments%}
+  {%for i in comments%}
+    <p>>>>  Comment {{forloop.counter}} by {{i.name}} on {{i.created}}</p>
+    <h3>{{i.body|linebreaks}}</h3>
+      {%endfor%}
+  {%else%}
+  <h3>Be First To Comment</h3>
+  {%endif%}
+  {%if csubtmit%}
+  <h2>Your Comment Added</h2>
+  {%else%}
+  <hr>
+  <h2>Add Your Comments Heare</h2>
+  <form method="POST">
+    {{form.as_p}}
+      {%csrf_token%}
+      <input type="submit" class='btn btn-lg btn-primary' name="" value="Add Comment">
+  </form>
+
+    {%endif%}
+{%endblock%}
