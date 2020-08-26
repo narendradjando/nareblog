@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{%extends 'test/base.html'%}
+{%block body%}
+<h1>EMPLOYEE UPDATE PORTAL {{msg}}</h1>
+<form method="POST">
+  {%csrf_token%}
+  Employee Number=<input type="text" name="eno" value="{{employee.eno}}"><br><br>
+  Employee Name=<input type="text" name="ename" value="{{employee.ename}}"><br><br>
+  Employee Salary=<input type="text" name="esal" value="{{employee.esal}}"><br><br>
+  Employee Adderess=<input type="text" name="eaddr" value="{{employee.eaddr}}"><br><br><br><br><br><hr>
+  <input type="submit" class="btn btn-primary btn-lg" value="update">
+
+</form>
+{%endblock%}

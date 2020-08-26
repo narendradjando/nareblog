@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{%extends 'test/base.html'%}
+{%block body%}
+<h1>EMPLOYEE INFORMATION</h1>
+  <table border='10'>
+    <thead>
+      <th>EMP.NO</th>
+      <th>EMP.NAME</th>
+      <th>EMP.SAL</th>
+      <th>EMP.ADDR</th>
+      <th>ACTIONS</th>
+    </thead>
+    {%for i in employee%}
+    <tr>
+      <td>{{i.eno}}</td>
+      <td>{{i.ename}}</td>
+      <td>{{i.esal}}</td>
+      <td>{{i.eaddr}}</td>
+      <td><a href="/update/{{i.id}}">update</a>|<a href="/delete/{{i.id}}">delete</a></td>
+    </tr>
+    {%endfor%}
+
+  </table>
+  <br>
+  <h1>Tolat Employee Count:{{count}}</h1>
+  <br><br><br>
+    <a class="btn btn-primary btn-lg" href="/forms" role="button">ADD EMPLOYEE</a><br><hr>
+    <a class="btn btn-primary btn-lg" href="/admin" role="button">ADMIN</a>
+
+
+{%endblock%}
